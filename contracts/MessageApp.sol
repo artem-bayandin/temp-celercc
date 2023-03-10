@@ -56,10 +56,7 @@ contract MsgExampleBasic is MessageApp {
         bytes calldata _message,
         address // executor
     ) external payable override onlyMessageBus returns (ExecutionStatus) {
-        (address sender, bytes memory message) = abi.decode(
-            (_message),
-            (address, bytes)
-        );
+        (address sender, bytes memory message) = abi.decode((_message), (address, bytes));
         emit MessageReceived(_srcContract, _srcChainId, sender, message);
         return ExecutionStatus.Success;
     }

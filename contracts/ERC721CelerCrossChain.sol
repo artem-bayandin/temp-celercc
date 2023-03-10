@@ -61,17 +61,12 @@ contract ERC721CelerCrossChain is ERC721, Initializable, Ownable, Pausable, Reen
         _disableInitializers();
     }
 
-    function init(
-        address _owner
-		, string memory _name
-        , string memory _symbol
-        , address _bridge
-	) initializer external {
+    function init(address _owner, string memory _name, string memory _symbol, address _bridge) initializer external {
         _transferOwnership(_owner);
         name_ = _name;
         symbol_ = _symbol;
         bridge_ = _bridge;
-	}
+    }
 
     function name() public view virtual override returns (string memory _name) {
         return name_;
@@ -92,12 +87,8 @@ contract ERC721CelerCrossChain is ERC721, Initializable, Ownable, Pausable, Reen
         return bridge_;
     }
 
-    function bridgeMint(
-        address to,
-        uint256 id,
-        string memory/* uri*/
-    ) external onlyNftBridge {
-        _mint(to, id);
+    function bridgeMint(address _to, uint256 _id, string memory/* uri*/) external onlyNftBridge {
+        _mint(_to, _id);
         // _setTokenURI(id, uri);
     }
 
@@ -107,11 +98,7 @@ contract ERC721CelerCrossChain is ERC721, Initializable, Ownable, Pausable, Reen
     }
 
     // called by user, burn token on this chain and mint same id/uri on dest chain
-    function crossChain(
-        uint64 _dstChid,
-        uint256 _id,
-        address _receiver
-    ) external payable whenNotPaused {
+    function crossChain(uint64 _dstChid, uint256 _id, address _receiver) external payable whenNotPaused {
         require(msg.sender == ownerOf(_id), "not token owner");
         // string memory _uri = tokenURI(_id);
         _burn(_id);
@@ -119,11 +106,7 @@ contract ERC721CelerCrossChain is ERC721, Initializable, Ownable, Pausable, Reen
     }
 
     // support chains using bytes for address
-    function crossChain(
-        uint64 _dstChid,
-        uint256 _id,
-        bytes calldata _receiver
-    ) external payable whenNotPaused {
+    function crossChain(uint64 _dstChid, uint256 _id, bytes calldata _receiver) external payable whenNotPaused {
         require(msg.sender == ownerOf(_id), "not token owner");
         // string memory _uri = tokenURI(_id);
         _burn(_id);
@@ -131,12 +114,8 @@ contract ERC721CelerCrossChain is ERC721, Initializable, Ownable, Pausable, Reen
     }
 
     // ===== only Owner
-    function mint(
-        address to,
-        uint256 id,
-        string memory/* uri*/
-    ) external onlyOwner {
-        _mint(to, id);
+    function mint(address _to, uint256 _id, string memory/* uri*/) external onlyOwner {
+        _mint(_to, _id);
         // _setTokenURI(id, uri);
     }
 
