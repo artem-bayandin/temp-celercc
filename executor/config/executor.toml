@@ -1,0 +1,22 @@
+# since we don't want the executor to execute messages that are not sent by our
+# BatchTransfer contract, the following items are added to filter only
+# the ones we care about
+[[service]]
+# Fully qualified absolute path only, "~" would not work
+signer_keystore = "/Users/artsiombayandzin/.executor/eth-ks/signer.json"
+signer_passphrase = "security-is-queen-37"
+[[service.contracts]]
+chain_id = 5 # Goerli
+address = "0x95E58413655d5ea010dBAb4Bb86872813eAb65d8"
+[[service.contracts]]
+chain_id = 97 # Bsc testnet
+address = "0x172978c9950Bf7C58339e0425FF7eD56Dae5d57d"
+
+[sgnd]
+# SGN testnet node0 grpc. executor reads available messages from this endpoint
+sgn_grpc = "cbridge-v2-test.celer.network:9094" 
+# SGN testnet gateway grpc. all tx operations to the SGN is delegated through it
+gateway_grpc = "cbridge-v2-test.celer.network:9094" 
+
+[db]
+url = "localhost:26257"
