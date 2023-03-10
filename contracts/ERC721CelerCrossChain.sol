@@ -54,19 +54,24 @@ contract ERC721CelerCrossChain is ERC721, Initializable, Ownable, Pausable, Reen
 
     address internal bridge_;
 
-    /* INITIALISATION */
+    /* INITIALIZATION */
 
-    constructor () ERC721("", "") {
-        _pause();
-        _disableInitializers();
-    }
-
-    function init(address _owner, string memory _name, string memory _symbol, address _bridge) initializer external {
-        _transferOwnership(_owner);
+    // this contract is intended to be used under proxy, that's why it has such constructor as a temporary copy from `init` function
+    constructor (string memory _name, string memory _symbol, address _bridge) ERC721(_name, _symbol) {
+        _transferOwnership(msg.sender);
         name_ = _name;
         symbol_ = _symbol;
         bridge_ = _bridge;
+        // _pause();
+        _disableInitializers();
     }
+
+    // function init(address _owner, string memory _name, string memory _symbol, address _bridge) initializer external {
+    //     _transferOwnership(_owner);
+    //     name_ = _name;
+    //     symbol_ = _symbol;
+    //     bridge_ = _bridge;
+    // }
 
     function name() public view virtual override returns (string memory _name) {
         return name_;
