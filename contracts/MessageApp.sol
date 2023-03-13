@@ -46,7 +46,7 @@ contract MsgExampleBasic is MessageApp {
         string memory _message
     ) external payable {
         bytes memory message = abi.encode(msg.sender, _message);
-        sendMessage(_dstContract, _dstChainId, message, msg.value);
+        super.sendMessage(_dstContract, _dstChainId, message, msg.value);
     }
 
     // called by MessageBus on destination chain to receive cross-chain messages

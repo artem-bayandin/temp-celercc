@@ -16,7 +16,7 @@ maxblkdelta = 5000 # max number of blocks per poll request
 [[multichain]]
 chainID = 97
 name = "BSC Testnet"
-gateway = "https://data-seed-prebsc-2-s3.binance.org:8545/"
+gateway = "https://bsc-testnet.public.blastapi.io"
 cbridge = "0xf89354F314faF344Abd754924438bA798E306DF2"
 msgbus = "0xAd204986D6cB67A5Bc76a3CB8974823F43Cb9AAA"
 blkinterval = 3
