@@ -7,10 +7,13 @@ signer_keystore = "/Users/artsiombayandzin/.executor/eth-ks/signer.json"
 signer_passphrase = "security-is-queen-37"
 [[service.contracts]]
 chain_id = 5 # Goerli
-address = "0xb7fd68e57a4C6664bADb21e5ec4B9a79D632813d"
+address = "0x130b890db8796667c92c9df0afa3eaeee60f5606"
 [[service.contracts]]
 chain_id = 97 # Bsc testnet
-address = "0x2ED9Be4D407a51a344c6E1312304982Df6828265"
+address = "0x22D8DC613d0866393714ad038817158d79507039"
+[[service.contracts]]
+chain_id = 80001 # Mumbai
+address = "0x57F291B73150157c94a99172355722e2c0268e26"
 
 [sgnd]
 # SGN testnet node0 grpc. executor reads available messages from this endpoint

@@ -69,11 +69,11 @@ const config: HardhatUserConfig = {
       url: "https://goerli.blockpi.network/v1/rpc/public",
       chainId: 5,
       gas: 3000000,
-      gasPrice: 110 * _1gwei, // 133 609 732 389
+      gasPrice: 60 * _1gwei, // 133 609 732 389
       accounts: [pk]
     },
     mumbai: {
-      url: 'https://matic-mumbai.chainstacklabs.com/',
+      url: 'https://matic-mumbai.chainstacklabs.com',
       chainId: 80001,
       gas: 3000000,
       gasPrice: 2 * _1gwei,
