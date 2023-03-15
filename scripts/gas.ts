@@ -6,6 +6,9 @@ async function main() {
 
     const feeData = await ethers.provider.getFeeData()
     console.log(`feedata`, feeData)
+
+    const gas = feeData.gasPrice?.div(1000000000).add(1)
+    console.log(`gas costs ${gas} gwei`)
 }
 
 if (require.main === module) {

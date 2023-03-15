@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "dependencies": {
+    "sgn-v2-contracts": "^0.2.0"
+  },
   "devDependencies": {
     "@ethersproject/abi": "^5.4.7",
     "@ethersproject/providers": "^5.4.7",
@@ -29,9 +32,6 @@
     "ts-node": ">=8.0.0",
     "typechain": "^8.1.0",
     "typescript": ">=4.5.0"
-  },
-  "dependencies": {
-    "sgn-v2-contracts": "^0.2.0"
   },
   "repository": {
     "type": "git",

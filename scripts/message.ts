@@ -3,6 +3,12 @@ import { ethers } from 'hardhat'
 import { ERC20Mock, MsgExampleBasic } from '../typechain-types'
 
 /*
+    Event topic
+    event Message(address indexed sender, address receiver, uint256 dstChainId, bytes message, uint256 fee)
+    0xce3972bfffe49d317e1d128047a97a3d86b25c94f6f04409f988ef854d25e0e4
+*/
+
+/*
     Goerli to BSC testnet message logs
     Message: "'hello' from goerli to bsc"
 

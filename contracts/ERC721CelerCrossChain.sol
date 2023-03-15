@@ -25,16 +25,7 @@ interface INFTBridge {
         uint64 _dstChid,
         address _sender,
         address _receiver,
-        uint256 _id,
-        string calldata _uri
-    ) external payable;
-
-    function sendMsg(
-        uint64 _dstChid,
-        address _sender,
-        bytes calldata _receiver,
-        uint256 _id,
-        string calldata _uri
+        uint256 _id
     ) external payable;
 
     function totalFee(
@@ -92,9 +83,8 @@ contract ERC721CelerCrossChain is ERC721, Initializable, Ownable, Pausable, Reen
         return bridge_;
     }
 
-    function bridgeMint(address _to, uint256 _id, string memory/* uri*/) external onlyNftBridge {
+    function bridgeMint(address _to, uint256 _id) external onlyNftBridge {
         _mint(_to, _id);
-        // _setTokenURI(id, uri);
     }
 
     // calls nft bridge to get total fee for crossChain msg.Value
@@ -107,21 +97,20 @@ contract ERC721CelerCrossChain is ERC721, Initializable, Ownable, Pausable, Reen
         require(msg.sender == ownerOf(_id), "not token owner");
         // string memory _uri = tokenURI(_id);
         _burn(_id);
-        INFTBridge(bridge_).sendMsg{value: msg.value}(_dstChid, msg.sender, _receiver, _id, "" /*_uri*/);
+        INFTBridge(bridge_).sendMsg{value: msg.value}(_dstChid, msg.sender, _receiver, _id);
     }
 
-    // support chains using bytes for address
-    function crossChain(uint64 _dstChid, uint256 _id, bytes calldata _receiver) external payable whenNotPaused {
-        require(msg.sender == ownerOf(_id), "not token owner");
-        // string memory _uri = tokenURI(_id);
-        _burn(_id);
-        INFTBridge(bridge_).sendMsg{value: msg.value}(_dstChid, msg.sender, _receiver, _id, "" /*_uri*/);
-    }
+    // // support chains using bytes for address
+    // function crossChain(uint64 _dstChid, uint256 _id, bytes calldata _receiver) external payable whenNotPaused {
+    //     require(msg.sender == ownerOf(_id), "not token owner");
+    //     // string memory _uri = tokenURI(_id);
+    //     _burn(_id);
+    //     INFTBridge(bridge_).sendMsg{value: msg.value}(_dstChid, msg.sender, _receiver, _id);
+    // }
 
     // ===== only Owner
-    function mint(address _to, uint256 _id, string memory/* uri*/) external onlyOwner {
+    function mint(address _to, uint256 _id) external onlyOwner {
         _mint(_to, _id);
-        // _setTokenURI(id, uri);
     }
 
     function setNFTBridge(address _newBridge) public onlyOwner {
