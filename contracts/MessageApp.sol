@@ -6,10 +6,10 @@ pragma solidity ^0.8.9;
     This is a sample contract built according to https://im-docs.celer.network/developer/development-guide/contract-examples/hello-world .
     This should only transfer a message from one chain to another one.
 
-    At least, this emits messages on Message Bus side, which are grabbed by the executor, but for some reason executor fails to execute with error:
-    `error_handlers.go:27: cannot execute message (id: 123456): determineGas err: tx dry-run err: execution reverted`.
+    Current state:
+    -  sendMessage() works cross chain via message bus provided by Celer.
 
-    /executor/* is a copy from ~/.executor/* on the machine to run exector. 
+    Might be treated as "completed" for now, until any failures are faced.
 */
 
 import { MessageSenderApp } from "sgn-v2-contracts/contracts/message/framework/MessageSenderApp.sol";

@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-only
 pragma solidity ^0.8.9;
 
+/*
+    This is a copy of a contract from Celer just to have it in front of my eyes.
+*/
+
 import { MessageSenderApp } from "sgn-v2-contracts/contracts/message/framework/MessageSenderApp.sol";
 import { MessageReceiverApp } from "sgn-v2-contracts/contracts/message/framework/MessageReceiverApp.sol";
 import { IMessageBus } from "sgn-v2-contracts/contracts/message/interfaces/IMessageBus.sol";

@@ -1,6 +1,19 @@
 // SPDX-License-Identifier: GPL-3.0-only
 pragma solidity ^0.8.9;
 
+/*
+    Custom version of NFT bridge, source: https://github.com/celer-network/sgn-v2-contracts/blob/main/contracts/message/apps/nft-bridge/NFTBridge.sol
+
+    Interfaces updated to our needs.
+    Simplified version to have just minimum needed.
+
+    Current state:
+    - sendMsg() called from our NFT contract (ERC721CelerCrossChain.sol) works as intended;
+    - message is sent; when a message is executed, an NFT tokenId is minted.
+
+    Might be treated as "completed" for now, until any failures are faced.
+*/
+
 import { Pausable } from "@openzeppelin/contracts/security/Pausable.sol";
 import { MessageSenderApp } from "sgn-v2-contracts/contracts/message/framework/MessageSenderApp.sol";
 import { MessageReceiverApp } from "sgn-v2-contracts/contracts/message/framework/MessageReceiverApp.sol";

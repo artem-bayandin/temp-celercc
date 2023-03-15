@@ -2,6 +2,10 @@
 
 pragma solidity ^0.8.18;
 
+/*
+    This is a contract to imitate ERC20 tokens.
+*/
+
 import { ERC20 } from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 

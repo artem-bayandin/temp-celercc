@@ -26,10 +26,12 @@ async function main() {
     feeData = await ethers.provider.getFeeData()
     console.log(`feedata`, feeData)
 
-    await crossChain(goerliChainData, bscChainData)
+    // await crossChain(goerliChainData, bscChainData)
 
     // todo: review $CELER token consumption
     // todo: review balance comsumption
+
+    await getTokenOwner(100003)
 }
 
 
@@ -214,6 +216,14 @@ async function setupBridge() {
     console.log(`setDestNfts on ${currentChainData.name} tx hash: ${setDestNftsTx.hash}`)
     await setDestNftsTx.wait()
     console.log(`completed`)
+}
+
+async function getTokenOwner(tokenId: number) {
+    const chainData = await getIDataByChainId()
+    const contract = await getNftContract(chainData.nftAddress)
+
+    const owner = await contract.ownerOf(tokenId)
+    console.log(`owner: ${owner}`)
 }
 
 if (require.main === module) {

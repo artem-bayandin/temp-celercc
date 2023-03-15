@@ -7,9 +7,10 @@ pragma solidity ^0.8.18;
     Chains to be linked most likely should be managed by our app or contract.
     CC transfer to be used - "burn and mint", with neither "source" nor "pegged" contract, and each chain will have its own range of ids. (later)
     
-    Current task - to somehow transfer minted tokens to another chain to finally understand how it works.
-    Current state - calling .totalFee(...) as well as .crossChain(...) fails with
-    `Error: missing revert data in call exception; Transaction reverted without a reason string`.
+    Current state:
+    - crossChain() works via our custom bridge (NFTBridge.sol).
+
+    Might be treated as "completed" for now, until any failures are faced.
 */
 
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
