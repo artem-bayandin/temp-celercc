@@ -20,21 +20,7 @@ import { ReentrancyGuard } from "@openzeppelin/contracts/security/ReentrancyGuar
 import { ERC721 } from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import { IERC721 } from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-
-interface INFTBridge {
-    function sendMsg(
-        uint64 _dstChid,
-        address _sender,
-        address _receiver,
-        uint256 _id
-    ) external payable;
-
-    function totalFee(
-        uint64 _dstChid,
-        address _nft,
-        uint256 _id
-    ) external view returns (uint256);
-}
+import { INFTBridge, INFT } from "./Interfaces.sol";
 
 contract ERC721CelerCrossChain is ERC721, Initializable, Ownable, Pausable, ReentrancyGuard {
     event NFTBridgeUpdated(address);
@@ -98,16 +84,8 @@ contract ERC721CelerCrossChain is ERC721, Initializable, Ownable, Pausable, Reen
         require(msg.sender == ownerOf(_id), "not token owner");
         // string memory _uri = tokenURI(_id);
         _burn(_id);
-        INFTBridge(bridge_).sendMsg{value: msg.value}(_dstChid, msg.sender, _receiver, _id);
+        INFTBridge(bridge_).sendMsg{value: msg.value}(msg.sender, _id, _dstChid, _receiver);
     }
-
-    // // support chains using bytes for address
-    // function crossChain(uint64 _dstChid, uint256 _id, bytes calldata _receiver) external payable whenNotPaused {
-    //     require(msg.sender == ownerOf(_id), "not token owner");
-    //     // string memory _uri = tokenURI(_id);
-    //     _burn(_id);
-    //     INFTBridge(bridge_).sendMsg{value: msg.value}(_dstChid, msg.sender, _receiver, _id);
-    // }
 
     // ===== only Owner
     function mint(address _to, uint256 _id) external onlyOwner {

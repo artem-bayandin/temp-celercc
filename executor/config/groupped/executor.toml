@@ -1,0 +1,44 @@
+# since we don't want the executor to execute messages that are not sent by our
+# BatchTransfer contract, the following items are added to filter only
+# the ones we care about
+
+[[service]]
+# Fully qualified absolute path only, "~" would not work
+signer_keystore = "/Users/artsiombayandzin/.executor/eth-ks/signer.json"
+signer_passphrase = "security-is-queen-37"
+
+[[service.contract_sender_groups]]
+# the name/ID of the group. service.contracts refer to a sender group in allow_sender_groups
+name = "my-sender-group" 
+allow = [
+  # allow and execute messages originated from <app-contract-address> on chain 1
+  { chain_id = 5, address = "0x130b890db8796667c92c9df0afa3eaeee60f5606" },
+  # allow and execute messages originated from <app-contract-address> on chain 97
+  { chain_id = 97, address = "0x22D8DC613d0866393714ad038817158d79507039" },
+  # allow and execute messages originated from <app-contract-address> on chain 80001
+  { chain_id = 80001, address = "0x57F291B73150157c94a99172355722e2c0268e26" }
+]
+
+[[service.contracts]]
+chain_id = 5 # Goerli
+address = "0x130b890db8796667c92c9df0afa3eaeee60f5606"
+allow_sender_groups = ["my-sender-group"]
+
+[[service.contracts]]
+chain_id = 97 # Bsc testnet
+address = "0x22D8DC613d0866393714ad038817158d79507039"
+allow_sender_groups = ["my-sender-group"]
+
+[[service.contracts]]
+chain_id = 80001 # Mumbai
+address = "0x57F291B73150157c94a99172355722e2c0268e26"
+allow_sender_groups = ["my-sender-group"]
+
+[sgnd]
+# SGN testnet node0 grpc. executor reads available messages from this endpoint
+sgn_grpc = "cbridge-v2-test.celer.network:9094" 
+# SGN testnet gateway grpc. all tx operations to the SGN is delegated through it
+gateway_grpc = "cbridge-v2-test.celer.network:9094" 
+
+[db]
+url = "localhost:26257"

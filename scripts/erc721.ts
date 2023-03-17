@@ -27,9 +27,10 @@ async function main() {
     feeData = await ethers.provider.getFeeData()
     console.log(`feedata`, feeData)
 
-    // await crossChain(bscChainData, goerliChainData, 6 + goerliChainData.offset)
-    await logTokenOwners()
-    await logBalances()
+    await crossChain(mumbaiChainData, goerliChainData, 9 + mumbaiChainData.offset)
+    await crossChain(mumbaiChainData, bscChainData, 10 + mumbaiChainData.offset)
+    // await logTokenOwners()
+    // await logBalances()
     // await transferSingleChain()
 
     // todo: review $CELER token consumption
@@ -234,8 +235,6 @@ needed : ${balanceNeeded?.toString()}`)
 
     const msgBusEvents = events.filter((item: any) => item.address.toLowerCase() === srcChainData.messageBus.toLowerCase())
     console.log(`MSG_BUS EVENTS`, msgBusEvents)
-
-    console.log('ALL EVENTS', events)
 }
 
 async function setupBridge() {

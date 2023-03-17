@@ -1,0 +1,42 @@
+[[multichain]]
+chainID = 5
+name = "Goerli"
+gateway = "https://endpoints.omniatech.io/v1/eth/goerli/public" # fill in your Goerli rpc provider url
+# cBridge (liquidity bridge) contract address. Executor relies on events from this
+# contract to double check and make sure funds are transfered to the destination
+# before it attempts messages on the destination chain
+cbridge = "0x130b890db8796667c92c9df0afa3eaeee60f5606"
+# MessageBus contract address. Executor relies this to keep a message execution
+# history (just so you can debug or help out angry customers).
+msgbus = "0xF25170F86E4291a99a9A560032Fe9948b8BcFBB2"
+blkinterval = 15 # polling interval
+blkdelay = 5 # how many blocks confirmations are required
+maxblkdelta = 5000 # max number of blocks per poll request
+# on some EVM chains the gas estimation can be off. the below fields 
+# are added to make up for the inconsistancies.
+addgasgwei = 4 # add 4 gwei to gas price
+addgasestimateratio = 0.3 # multiply gas limit by this ratio
+
+[[multichain]]
+chainID = 97
+name = "BSC Testnet"
+gateway = "https://endpoints.omniatech.io/v1/bsc/testnet/public"
+cbridge = "0x22D8DC613d0866393714ad038817158d79507039"
+msgbus = "0xAd204986D6cB67A5Bc76a3CB8974823F43Cb9AAA"
+blkinterval = 3
+blkdelay = 6
+maxblkdelta = 5000
+addgasgwei = 2 # add 2 gwei to gas price
+addgasestimateratio = 0.3 # multiply gas limit by this ratio
+
+[[multichain]]
+chainID = 80001
+name = "Mumbai"
+gateway = "https://matic-mumbai.chainstacklabs.com"
+cbridge = "0x57F291B73150157c94a99172355722e2c0268e26"
+msgbus = "0x7d43AABC515C356145049227CeE54B608342c0ad"
+blkinterval = 3
+blkdelay = 7
+maxblkdelta = 5000
+addgasgwei = 1 # add 1 gwei to gas price
+addgasestimateratio = 0.3 # multiply gas limit by this ratio
